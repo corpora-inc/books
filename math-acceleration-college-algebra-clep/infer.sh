@@ -2,6 +2,21 @@
 
 set -e
 
+INSTRUCTIONS="
+Return the same file with the following changes:
+1. Add detailed explanations of concepts and methods.
+2. Be generous with vertical space following conventional markdown linting guidelines.
+3. Give intuition about the concepts to help the reader understand and remember.
+
+The focus is on teaching the College Algebra material in a way that is engaging and easy to understand.
+
+Remove anything that does not contribute to the student's mastery of Algebra for the College Algebra CLEP exam.
+
+Expand on anything that is not clear or could be better explained.
+
+Proofread and return the file to be a part of the greatest College Algebra course ever.
+"
+
 # Define the list of filenames
 files=(
 # "01-00-unit-intro-foundational-algebraic-concepts.md"
@@ -59,7 +74,7 @@ files=(
 # "08-01-lesson-understanding-complex-numbers-and-basic-operations.md"
 # "08-02-lesson-representing-complex-numbers-on-the-complex-plane.md"
 # "08-03-lesson-introduction-to-conic-sections-and-standard-equations.md"
-"08-04-lesson-graphing-parabolas-circles-ellipses-and-hyperbolas.md"
+# "08-04-lesson-graphing-parabolas-circles-ellipses-and-hyperbolas.md"
 # "08-05-lesson-applications-of-conic-sections-in-science-and-engineering.md"
 
 # "09-00-unit-intro-systems-of-equations-and-matrix-methods.md"
@@ -88,12 +103,12 @@ files=(
 # "12-02-lesson-mixed-problem-solving-techniques.md"
 # "12-03-lesson-advanced-challenge-problems-for-critical-thinking.md"
 # "12-04-lesson-strategies-for-test-taking-and-timed-practice.md"
-# "12-05-lesson-final-challenge-problems-for-college-algebra-clep-preparation.md"
+"12-05-lesson-final-challenge-problems-for-college-algebra-clep-preparation.md"
 )
 
 # Loop through files and run `corpora workon`
 for file in "${files[@]}"; do
-    corpora infer "$file" --check ./build.sh
+    corpora infer "$file" --check ./build.sh --instructions "$INSTRUCTIONS"
     git add "$file"
     git commit -m "Infer $file" --no-gpg-sign
     corpora sync --noinput
