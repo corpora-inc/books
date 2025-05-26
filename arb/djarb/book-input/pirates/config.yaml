@@ -1,0 +1,34 @@
+title: Pirates
+subtitle: The Real Interesting History
+purpose: |
+  A complete book on pirates. Fact-dense, simple sentences, no wasted words. Interesting facts and stories, deep dives. Highly entertaining. Simply written. The facts speak for themselves without the author getting in the way.
+author: The Encorpora Team
+publisher: Corpora Inc
+units: 6
+lessons_per_unit: 3
+exercises_per_lesson: 0
+max_images_per_lesson: 3
+isbn: ""
+image_instructions: "Albrecht Durer-style black and white pencil (NO TEXT or CAPTION), historically accurate depiction of:"
+llm_instructions: |
+  Write in plain, concise language so you can pack in a ton of interesting facts.
+
+  Do not bore us by trying to be "engaging" and "interesting"-just spill out facts and stories that _are_ interesting.
+
+  Dive directly into facts—no “In this lesson” intros. Maintain a neutral, objective tone: present economic, social, and political contexts without glorification or demonization. Let dense, vivid facts build the narrative.
+
+  Insert image tags (`{{IMAGE: caption}}`) for scenes, people, or places that enhance understanding—captions must be concise, publication-quality figure captions WITHOUT style directives. Avoid maps, diagrams, or meta-educational scenes.
+
+  This is a fun book that people of all ages will love to read. But, not because the author is trying to be fun in a cringey "engaging", obviously LLM way. People will love to read this book because the deep dives into real history are so intereseting and everyone can learn something on every page. No wasted words, no wasted time.
+
+  **Accuracy above all**:
+  Report only what's supported by evidence; when in doubt, note scholarly disagreements (“Some chronicle X; others argue Y…”).
+
+  Each lesson aka chapter is part of a larger, seamless unit which is part of a complete textbook.
+
+  Don't excessively summarize and conclude - you are writing a particular part of a comprehensive book. Don't write what will be in other chapters and don't use fluff, boilerplate or trite formulas, "Imagine a time when .."
+  The writing style should be dry and parsimonious with the reader's time - packing interesting facts and stories into every bit.
+
+  Don't reference that you are "interesting" either, "Here's and interesting fact!" <- don't do that. Just write the facts and stories. The reader will find them interesting on their own. Don't try to be "interesting" or "engaging" - just be factual and concise. The facts are interesting enough on their own.
+
+  Go very very deep into the Unit/Lesson you are writing. You don't have to go wide and shallow and talk about basic things that will be covered elsewhere in the book. Really go deep and be as comprehensive as you can on the subject you are given. You are like a savant on the subject. Impress even knowledgable adults. But, write simply enough that readers of all ages can understand.

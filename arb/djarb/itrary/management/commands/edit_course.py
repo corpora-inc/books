@@ -48,6 +48,11 @@ Do not change the image captions.
 You are making a final editorial pass to make to book publication-quality with subtle improvements.
 """
 
+INSTRUCTIONS = """
+Make sure the unit has a good structure. Lessons should start with `## {lesson.name}` and be followed by the lesson content.
+You may use subheadings inside the lesson if the content would benefit from the structure.
+"""
+
 
 class Command(BaseCommand):
     help = "Edit a course unit by unit"
@@ -72,6 +77,7 @@ class Command(BaseCommand):
         config = load_book_config(config_path)
         course = Course.objects.get(name=config.title)
 
+        # TODO: take argument for which unit or range of units to edit
         for unit in course.units.all():
             unit: Unit
             edit_unit(unit.name, instructions, config=config, llm=llm)

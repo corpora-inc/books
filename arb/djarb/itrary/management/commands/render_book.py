@@ -12,6 +12,7 @@ from itrary.models import Course
 from itrary.utils import load_book_config
 
 llm = load_llm_provider("openai")
+# llm = load_llm_provider("local")
 
 
 class Command(BaseCommand):
@@ -48,7 +49,6 @@ class Command(BaseCommand):
             default=False,
             help="Skip image generation and use existing images if available",
         )
-
         parser.add_argument(
             "--no-cover",
             action="store_true",
@@ -135,26 +135,26 @@ class Command(BaseCommand):
             # continue
             # #
 
+            # Not sure if this is helpful. We could use the context and sort of
+            # transform into a full full image prompt description ...
+            # but, I think for this one we ride with the caption.
+
             # Determine context header for prompt
-            token_index = content.find(token_pattern)
-            before = content[:token_index]
-            header_pattern = r"^(#{1,6})\s+(.+)$"
-            headers = [
-                m.group(2).strip()
-                for line in before.splitlines()
-                if (m := re.match(header_pattern, line))
-            ]
-            context = headers[-1] if headers else ""
+            # token_index = content.find(token_pattern)
+            # before = content[:token_index]
+            # header_pattern = r"^(#{1,6})\s+(.+)$"
+            # headers = [
+            #     m.group(2).strip()
+            #     for line in before.splitlines()
+            #     if (m := re.match(header_pattern, line))
+            # ]
+            # context = headers[-1] if headers else ""
 
             # Build the image prompt
             prompt_parts = []
-            if context:
-                prompt_parts.append(f"Context:\n{config.title}\n{context}\n")
-            prompt_parts.append(
-                f"Image Instructions:\n{config.image_instructions}\n"
-                f"The image caption is:\n`{alt_text}`\n\n"
-                "Generate an image that matches the caption using the instructions."
-            )
+            # if context:
+            #     prompt_parts.append(f"Context:\n{config.title}\n{context}\n")
+            prompt_parts.append(f"{config.image_instructions} `{alt_text}`")
             image_prompt = "\n".join(prompt_parts)
             self.stdout.write(f"PROMPT:\n{image_prompt}")
 
