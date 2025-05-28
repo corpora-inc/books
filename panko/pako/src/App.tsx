@@ -108,15 +108,18 @@ export default function App() {
       <Drawer>
         <DrawerTrigger asChild>
           <div>
-            <Info className="absolute top-3 right-3   w-6 h-6 text-gray-500" />
+            <Info className="absolute top-3 right-3 w-6 h-6 text-gray-500" />
           </div>
         </DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle className="font-bold text-2xl">About Pako</DrawerTitle>
-            <DrawerDescription>Learn Korean or 영어를 배우다</DrawerDescription>
-          </DrawerHeader>
-          <About />
+        <DrawerContent className="max-w-3xl w-full mx-auto shadow-lg">
+          <div className="max-h-[80vh] overflow-y-auto">
+
+            <DrawerHeader>
+              <DrawerTitle className="font-bold text-2xl">About Pako</DrawerTitle>
+              <DrawerDescription>Learn Korean or 영어를 배우다</DrawerDescription>
+            </DrawerHeader>
+            <About />
+          </div>
         </DrawerContent>
       </Drawer>
       <div className="flex flex-col h-full w-full bg-white rounded-lg shadow-lg overflow-scroll">

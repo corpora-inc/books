@@ -3,9 +3,14 @@ import { getVersion } from "@tauri-apps/api/app";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, Globe, Mail, Info } from "lucide-react";
+import { detectPlatform } from "@/util/getPlatform";
+
+const APPLE_LINK = "https://apps.apple.com/us/app/corp%C3%A1n/id6746082061";
+const PLAY_LINK = "https://play.google.com/store/apps/details?id=com.corpora.corpan";
 
 const About = () => {
   const [appVersion, setAppVersion] = useState<string>("");
+  const [currentPlatform, setCurrentPlatform] = useState<string>("");
 
   useEffect(() => {
     const fetchAppVersion = async () => {
@@ -18,8 +23,60 @@ const About = () => {
       }
     };
 
+    const fetchPlatform = async () => {
+      try {
+        const plat = await detectPlatform()
+        setCurrentPlatform(plat);
+        console.log("Current platform:", plat);
+      } catch (e) {
+        console.error("Failed to get platform:", e);
+        setCurrentPlatform("unknown");
+      }
+    };
+
     fetchAppVersion();
+    fetchPlatform();
   }, []);
+
+  const renderStoreLinks = () => {
+    if (currentPlatform === "ios" || currentPlatform === "mac") {
+      return (
+        <Button variant="outline" size="sm" asChild className="gap-1.5">
+          <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
+            <Globe className="h-4 w-4" />
+            Download Corpán on the App Store
+          </a>
+        </Button>
+      );
+    } else if (currentPlatform === "android") {
+      return (
+        <Button variant="outline" size="sm" asChild className="gap-1.5">
+          <a href={PLAY_LINK} target="_blank" rel="noopener noreferrer">
+            <Globe className="h-4 w-4" />
+            Get Corpán on Google Play
+          </a>
+        </Button>
+      );
+    } else {
+      // For other platforms, show both links
+      return (
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button variant="outline" size="sm" asChild className="gap-1.5">
+            <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
+              <Globe className="h-4 w-4" />
+              App Store (iOS, macOS)
+            </a>
+          </Button>
+          <Button variant="outline" size="sm" asChild className="gap-1.5">
+            <a href={PLAY_LINK} target="_blank" rel="noopener noreferrer">
+              <Globe className="h-4 w-4" />
+              Google Play (Android)
+            </a>
+          </Button>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-full px-4 py-6 gap-4">
@@ -33,7 +90,6 @@ const About = () => {
           {appVersion || "Loading..."}
         </Badge>
       </div>
-
 
       {/* Website Section */}
       <div className="flex items-center justify-between">
@@ -52,7 +108,6 @@ const About = () => {
           </a>
         </Button>
       </div>
-
 
       {/* Support & Feedback Section */}
       <div>
@@ -86,9 +141,21 @@ const About = () => {
         </div>
       </div>
 
-      {/* Add this to give credit to the project */}
-      <p className="items-end justify-self-end  text-xs text-center text-muted-foreground pt-4 ">
-        © {new Date().getFullYear()} Corpora Inc — Pako   
+      {/* Corpán Promotion Section */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <Info className="h-5 w-5 text-muted-foreground" />
+          <h3 className="text-base font-medium">Try our new app: Corpán</h3>
+        </div>
+        <p className="text-muted-foreground text-sm mb-4">
+          We've launched Corpán—a next-generation language learning app, now available for free!
+        </p>
+        {renderStoreLinks()}
+      </div>
+
+      {/* Footer */}
+      <p className="items-end justify-self-end text-xs text-center text-muted-foreground pt-4">
+        © {new Date().getFullYear()} Corpora Inc — Pako
       </p>
     </div>
   );
