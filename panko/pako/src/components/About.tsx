@@ -41,26 +41,31 @@ const About = () => {
   const renderStoreLinks = () => {
     if (currentPlatform === "ios" || currentPlatform === "mac") {
       return (
-        <Button variant="outline" size="sm" asChild className="gap-1.5">
-          <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
-            <Globe className="h-4 w-4" />
-            Download Corpán on the App Store
-          </a>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button variant="outline" size="sm" asChild className="gap-1.5">
+            <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
+              <Globe className="h-4 w-4" />
+              Download Corpán on the App Store
+            </a>
+          </Button>
+        </div>
       );
     } else if (currentPlatform === "android") {
       return (
-        <Button variant="outline" size="sm" asChild className="gap-1.5">
-          <a href={PLAY_LINK} target="_blank" rel="noopener noreferrer">
-            <Globe className="h-4 w-4" />
-            Get Corpán on Google Play
-          </a>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button variant="outline" size="sm" asChild className="gap-1.5">
+            <a href={PLAY_LINK} target="_blank" rel="noopener noreferrer">
+              <Globe className="h-4 w-4" />
+              Get Corpán on Google Play
+            </a>
+          </Button>
+        </div>
       );
     } else {
       // For other platforms, show both links
       return (
         <div className="flex flex-col sm:flex-row gap-3">
+
           <Button variant="outline" size="sm" asChild className="gap-1.5">
             <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
               <Globe className="h-4 w-4" />
@@ -148,7 +153,7 @@ const About = () => {
           <h3 className="text-base font-medium">Try our new app: Corpán</h3>
         </div>
         <p className="text-muted-foreground text-sm mb-4">
-          We've launched Corpán—a next-generation language learning app, now available for free!
+          We've launched Corpán, our next-generation language learning app! Upgrade now!
         </p>
         {renderStoreLinks()}
       </div>
