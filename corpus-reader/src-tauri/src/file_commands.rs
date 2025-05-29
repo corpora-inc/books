@@ -2,14 +2,14 @@ use crate::config::LIBRARY_DIRECTORY;
 use crate::db_commands::add_book_to_db;
 use crate::epub_commands::{create_epub_cover, get_epub_metadata};
 use regex::Regex;
+use serde::Serialize;
+use std::fs::File;
+use std::io::{self, BufReader, Read};
 use std::{fs, path::PathBuf};
+use tauri::ipc::Channel;
 use tauri::Manager;
 use tauri_plugin_dialog::DialogExt;
 use tauri_plugin_fs::FsExt;
-use std::fs::File;
-use std::io::{self, BufReader, Read};
-use tauri::ipc::Channel;
-use serde::Serialize;
 
 const TEMPORAL_EPUB_PATH: &str = "temporal.epub";
 
@@ -53,7 +53,14 @@ pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
     let final_epub_filename = format!("{}.epub", epub_file_name_stem);
     let library_path = resource_dir.join(LIBRARY_DIRECTORY);
     let new_file_path = library_path.join(final_epub_filename.clone());
-    create_epub_cover(&temp_file_path,  library_path.join(format!("{}.png", epub_file_name_stem)).to_str().unwrap().to_string());
+    create_epub_cover(
+        &temp_file_path,
+        library_path
+            .join(format!("{}.png", epub_file_name_stem))
+            .to_str()
+            .unwrap()
+            .to_string(),
+    );
 
     if check_if_file_exists(&new_file_path) {
         let _ = fs::remove_file(&temp_file_path);
@@ -68,13 +75,17 @@ pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
         app,
         epub_title,
         epub_creator,
-        library_path.join(format!("{}.png", epub_file_name_stem)).to_str().unwrap().to_string(),
-        epub_language,  
+        library_path
+            .join(format!("{}.png", epub_file_name_stem))
+            .to_str()
+            .unwrap()
+            .to_string(),
+        epub_language,
         new_file_path.to_str().unwrap().to_string(),
         epub_publisher,
         epub_pubdate,
     )
-        .await;
+    .await;
 
     Ok(())
 }
@@ -113,24 +124,14 @@ fn create_file_name(s1: String, s2: String) -> String {
     format!("{}{}", s1_sanitized, s2_sanitized)
 }
 
-
-
-
 // Define our streaming events
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase", tag = "event", content = "data")]
 pub enum FileStreamEvent {
-    Started {
-        path: String,
-        total_size: u64,
-    },
-    Chunk {
-        data: Vec<u8>,
-    },
+    Started { path: String, total_size: u64 },
+    Chunk { data: Vec<u8> },
     Finished,
-    Error {
-        message: String,
-    }
+    Error { message: String },
 }
 
 #[tauri::command]
@@ -140,33 +141,37 @@ pub fn stream_file(path: String, on_event: Channel<FileStreamEvent>) -> Result<(
         Ok(file) => file,
         Err(e) => {
             let error_msg = format!("Failed to open file: {}", e);
-            let _ = on_event.send(FileStreamEvent::Error { message: error_msg.clone() });
+            let _ = on_event.send(FileStreamEvent::Error {
+                message: error_msg.clone(),
+            });
             return Err(error_msg);
         }
     };
-    
+
     // Get file metadata for total size
     let metadata = match file.metadata() {
         Ok(meta) => meta,
         Err(e) => {
             let error_msg = format!("Failed to read file metadata: {}", e);
-            let _ = on_event.send(FileStreamEvent::Error { message: error_msg.clone() });
+            let _ = on_event.send(FileStreamEvent::Error {
+                message: error_msg.clone(),
+            });
             return Err(error_msg);
         }
     };
-    
+
     // Send started event with file size
-    if let Err(e) = on_event.send(FileStreamEvent::Started { 
-        path: path.clone(), 
-        total_size: metadata.len() 
+    if let Err(e) = on_event.send(FileStreamEvent::Started {
+        path: path.clone(),
+        total_size: metadata.len(),
     }) {
         return Err(format!("Failed to send start event: {}", e));
     }
-    
+
     // Create a buffered reader for efficient reading
     let mut reader = BufReader::with_capacity(64 * 1024, file); // 64KB buffer
     let mut buffer = vec![0; 64 * 1024];
-    
+
     // Read and send chunks
     loop {
         match reader.read(&mut buffer) {
@@ -180,16 +185,18 @@ pub fn stream_file(path: String, on_event: Channel<FileStreamEvent>) -> Result<(
             }
             Err(e) => {
                 let error_msg = format!("Error reading file: {}", e);
-                let _ = on_event.send(FileStreamEvent::Error { message: error_msg.clone() });
+                let _ = on_event.send(FileStreamEvent::Error {
+                    message: error_msg.clone(),
+                });
                 return Err(error_msg);
             }
         }
     }
-    
+
     // Send finished event
     if let Err(e) = on_event.send(FileStreamEvent::Finished) {
         return Err(format!("Failed to send finished event: {}", e));
     }
-    
+
     Ok(())
 }

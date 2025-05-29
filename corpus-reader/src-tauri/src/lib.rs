@@ -1,8 +1,8 @@
 use tauri_plugin_sql::{Migration, MigrationKind};
-mod file_commands;
 mod config;
 mod db_commands;
 mod epub_commands;
+mod file_commands;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -11,10 +11,10 @@ pub fn run() {
             version: 1,
             description: "create books table",
             sql: "CREATE TABLE IF NOT EXISTS books (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,  
-                title TEXT NOT NULL,  
-                author TEXT NOT NULL,  
-                progress INTEGER NOT NULL DEFAULT 0,  
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                author TEXT NOT NULL,
+                progress INTEGER NOT NULL DEFAULT 0,
                 last_read DATETIME DEFAULT CURRENT_TIMESTAMP,
                 last_read_page INTEGER DEFAULT 0,
                 cover_path TEXT,
@@ -83,8 +83,10 @@ pub fn run() {
         )
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_dialog::init())
-        
-        .invoke_handler(tauri::generate_handler![file_commands::pick_file, file_commands::stream_file])
+        .invoke_handler(tauri::generate_handler![
+            file_commands::pick_file,
+            file_commands::stream_file
+        ])
         .plugin(tauri_plugin_opener::init())
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

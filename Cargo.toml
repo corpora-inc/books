@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "corpus-reader/src-tauri",
+    "corpan/corpan-app/src-tauri",
+    "panko/pako/src-tauri",
+]

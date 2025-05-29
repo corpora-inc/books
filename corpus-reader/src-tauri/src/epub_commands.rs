@@ -34,8 +34,9 @@ pub fn create_epub_cover(epub_file_path: &PathBuf, epub_cover_name: String) {
         Ok(path) => {
             println!("Cover image saved to: {:#?}", path);
             path
-        },
+        }
         Err(e) => {
             println!("failed to write file: {}", e);
         }
-    };}
+    };
+}
