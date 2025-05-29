@@ -108,12 +108,11 @@ export default function App() {
       <Drawer>
         <DrawerTrigger asChild>
           <div>
-            <Info className="absolute top-3 right-3 w-6 h-6 text-gray-500" />
+            <Info className="absolute top-5 right-5 w-7 h-7 text-gray-500" />
           </div>
         </DrawerTrigger>
         <DrawerContent className="max-w-3xl w-full mx-auto shadow-lg">
           <div className="max-h-[80vh] overflow-y-auto">
-
             <DrawerHeader>
               <DrawerTitle className="font-bold text-2xl">About Pako</DrawerTitle>
               <DrawerDescription>Learn Korean or 영어를 배우다</DrawerDescription>
@@ -130,7 +129,7 @@ export default function App() {
           ) : curr ? (
             <>
               {/* <p className="text-6xl font-extrabold text-center mt-6 p-3"> */}
-              <p className="text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] font-extrabold text-center mt-6 p-3">
+              <p className="text-5xl md:text-6xl lg:text-7xl xl:text-[6rem] font-extrabold text-center mt-6 p-3">
                 {curr.text_korean}
               </p>
               <Button

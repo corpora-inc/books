@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getVersion } from "@tauri-apps/api/app";
+import { openUrl } from "@tauri-apps/plugin-opener";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, Globe, Mail, Info } from "lucide-react";
@@ -7,13 +8,16 @@ import { detectPlatform } from "@/util/getPlatform";
 
 const APPLE_LINK = "https://apps.apple.com/us/app/corp%C3%A1n/id6746082061";
 const PLAY_LINK = "https://play.google.com/store/apps/details?id=com.corpora.corpan";
+const WEBSITE_URL = "https://encorpora.io";
+const GITHUB_ISSUES = "https://github.com/corpora-inc/encorpora/issues";
+const SUPPORT_EMAIL = "mailto:team@encorpora.io";
 
 const About = () => {
   const [appVersion, setAppVersion] = useState<string>("");
   const [currentPlatform, setCurrentPlatform] = useState<string>("");
 
   useEffect(() => {
-    const fetchAppVersion = async () => {
+    (async () => {
       try {
         const version = await getVersion();
         setAppVersion(version);
@@ -21,66 +25,47 @@ const About = () => {
         console.error("Failed to get app version:", e);
         setAppVersion("N/A");
       }
-    };
 
-    const fetchPlatform = async () => {
       try {
-        const plat = await detectPlatform()
+        const plat = await detectPlatform();
         setCurrentPlatform(plat);
-        console.log("Current platform:", plat);
       } catch (e) {
         console.error("Failed to get platform:", e);
         setCurrentPlatform("unknown");
       }
-    };
-
-    fetchAppVersion();
-    fetchPlatform();
+    })();
   }, []);
 
   const renderStoreLinks = () => {
-    if (currentPlatform === "ios" || currentPlatform === "mac") {
-      return (
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
-              <Globe className="h-4 w-4" />
-              Download Corpán on the App Store
-            </a>
-          </Button>
-        </div>
-      );
-    } else if (currentPlatform === "android") {
-      return (
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={PLAY_LINK} target="_blank" rel="noopener noreferrer">
-              <Globe className="h-4 w-4" />
-              Get Corpán on Google Play
-            </a>
-          </Button>
-        </div>
-      );
-    } else {
-      // For other platforms, show both links
-      return (
-        <div className="flex flex-col sm:flex-row gap-3">
+    const items = [];
 
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={APPLE_LINK} target="_blank" rel="noopener noreferrer">
-              <Globe className="h-4 w-4" />
-              App Store (iOS, macOS)
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href={PLAY_LINK} target="_blank" rel="noopener noreferrer">
-              <Globe className="h-4 w-4" />
-              Google Play (Android)
-            </a>
-          </Button>
-        </div>
+    if (currentPlatform === "ios" || currentPlatform === "mac") {
+      items.push({ url: APPLE_LINK, label: "Download Corpán on the App Store" });
+    } else if (currentPlatform === "android") {
+      items.push({ url: PLAY_LINK, label: "Get Corpán on Google Play" });
+    } else {
+      items.push(
+        { url: APPLE_LINK, label: "App Store (iOS, macOS)" },
+        { url: PLAY_LINK, label: "Google Play (Android)" }
       );
     }
+
+    return (
+      <div className="flex flex-col sm:flex-row gap-3">
+        {items.map(({ url, label }) => (
+          <Button
+            key={url}
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            onClick={() => openUrl(url)}
+          >
+            <Globe className="h-4 w-4" />
+            {label}
+          </Button>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -102,15 +87,14 @@ const About = () => {
           <Globe className="h-5 w-5 text-muted-foreground" />
           <h3 className="text-base font-medium">Website</h3>
         </div>
-        <Button variant="outline" size="sm" asChild className="gap-1.5">
-          <a
-            href="https://encorpora.io"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Globe className="h-4 w-4" />
-            encorpora.io
-          </a>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-1.5"
+          onClick={() => openUrl(WEBSITE_URL)}
+        >
+          <Globe className="h-4 w-4" />
+          encorpora.io
         </Button>
       </div>
 
@@ -122,26 +106,27 @@ const About = () => {
         </div>
 
         <p className="text-muted-foreground text-sm mb-4">
-          For issues or suggestions, please visit our GitHub repository or
-          contact us via email.
+          For issues or suggestions, please visit our GitHub repository or contact us via email.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a
-              href="https://github.com/corpora-inc/encorpora/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GithubIcon className="h-4 w-4" />
-              GitHub issues
-            </a>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            onClick={() => openUrl(GITHUB_ISSUES)}
+          >
+            <GithubIcon className="h-4 w-4" />
+            GitHub issues
           </Button>
-          <Button variant="outline" size="sm" asChild className="gap-1.5">
-            <a href="mailto:team@encorpora.io">
-              <Mail className="h-4 w-4" />
-              team@encorpora.io
-            </a>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            onClick={() => openUrl(SUPPORT_EMAIL)}
+          >
+            <Mail className="h-4 w-4" />
+            team@encorpora.io
           </Button>
         </div>
       </div>
