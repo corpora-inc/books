@@ -26,7 +26,10 @@ pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
         Some(p) => p,
         None => {
             println!("No file selected by the user.");
+            // TODO: causes an error in the frontend
             return Err("No file selected".to_string());
+            // return Result();
+            // return std::result::Result::Ok();
         }
     };
 
