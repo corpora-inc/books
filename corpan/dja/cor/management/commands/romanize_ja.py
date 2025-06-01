@@ -23,7 +23,7 @@ class Command(BaseCommand):
         kakasi.setMode("r", "Hepburn")  # Hepburn
         conv = kakasi.getConverter()
 
-        for t in qs[:10]:
+        for t in qs:
             tokens = tagger(t.text)
             romaji_chunks = []
             for tok in tokens:
