@@ -144,7 +144,7 @@ In this case, I found that I would prefer some unit intros. You can see how the 
 
 After some editing, some back and forth, some `edit_course` calls .. maybe with a few hand edits to the scripts ... (TODO: abstract and make iterating even easier) ... I'm ready to render the book with images.
 
-At time of writing, things are parameterized fully. We are still deciding architectural directions and don't want to polish these early experiments too much. So, this time I'm going to make a hand edit. I want to try my local stable diffusion server this time. So, I change the `llm` provider in the `render_book.py` script:
+At time of writing, things _not_ are parameterized fully. We are still deciding architectural directions and don't want to polish these early experiments too much. So, this time I'm going to make a hand edit. I want to try my local stable diffusion server this time. So, I change the `llm` provider in the `render_book.py` script:
 
 ```py
 # llm = load_llm_provider("openai")
