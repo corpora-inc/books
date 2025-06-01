@@ -1,7 +1,7 @@
 from django.db import models
 
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class ExercisePydanticModel(BaseModel):
@@ -12,7 +12,9 @@ class ExercisePydanticModel(BaseModel):
 class LessonMarkdownModel(BaseModel):
     name: str
     markdown: str
-    exercises: List[ExercisePydanticModel]
+    # exercises: List[ExercisePydanticModel]
+    # exercises are optional
+    exercises: Optional[List[ExercisePydanticModel]] = []
 
 
 class UnitMarkdownModel(BaseModel):

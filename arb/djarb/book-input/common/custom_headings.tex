@@ -43,20 +43,34 @@
 }
 \makeatother
 
-
-
-
-% Level 4: \paragraph
+% tighten up 2/3
+% Tighten spacing for section and subsection headings
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+%   <left>: left margin
+%   <before-sep>: space above heading
+%   <after-sep>: space below heading
+% Tighten spacing for section and subsection headings
+% \titlespacing*{\section}
+%   {0pt}{1.2em plus 0.6em minus 0.4em}{0.6em plus 0.3em minus 0.2em}
+% \titlespacing*{\subsection}
+%   {0pt}{1.0em plus 0.5em minus 0.3em}{0.5em plus 0.2em minus 0.2em}
+% ##
+\titlespacing*{\section}{0pt}{0.8em}{0.1em}
+% ###
+\titlespacing*{\subsection}{0pt}{0.7em}{0em}
+% ####
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0em}
+% #####
 \titleformat{\paragraph}
   {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}
-  {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
-% Level 5: \subparagraph
+\titlespacing*{\paragraph}{0pt}{0.3em}{0em}
+% ######
 \titleformat{\subparagraph}
   {\normalfont\normalsize\bfseries\itshape}{\thesubparagraph}{1em}{}
-\titlespacing*{\subparagraph}
-  {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subparagraph}{0pt}{0.2em}{0em}
+
 
 % ---------------------------------------------
 % Line Spacing and Readability
@@ -95,39 +109,56 @@
 \renewcommand\labelitemiii{\circ}
 \makeatother
 
-% Optionally tweak list spacing (uncomment and adjust)
-% \usepackage{enumitem}
-% \setlist[itemize,enumerate]{leftmargin=0pt,labelsep=0.5em}
+% % Memoir's own list spacing controls
+% \setbeforeitemize{0.6em}   % space before the list
+% \setafteritemize{0.6em}    % space after the list
+% \setitemize{1}{1.5em}{1em}{0.5em}  % 1st level: indent, label width, label sep
+% \setitemize{2}{1.3em}{1em}{0.5em}  % 2nd level, etc.
+% % Patch itemize for inter-item spacing (hacky, but effective)
+% \let\olditem\item
+% \renewcommand{\item}{\olditem\vspace{0.25em}}  % space between items
+
+% % Memoir list spacing (not enumitem!)
+% \setbeforeitemize{0.5em}
+% \setafteritemize{0.5em}
+% % Inter-item spacing patch (affects all itemize)
+% \let\olditem\item
+% \renewcommand{\item}{\olditem\vspace{0.25em}}
+\usepackage{enumitem}
+\let\olditem\item
+\renewcommand{\item}{\olditem\vspace{0.191em}}
+\setlist[itemize,enumerate]{topsep=-0.5em, leftmargin=1.5em, after=\vspace{0.25em}}
+
+
 
 % ---------------------------------------------
 % Block Quote Styling
 % ---------------------------------------------
 \usepackage{mdframed}
 \usepackage{xcolor}
+
 % \renewenvironment{quote}
 %   {\begin{mdframed}[
-%       backgroundcolor=gray!10,
-%       linecolor=gray!40,
-%       leftline=true,
-%       rightline=true,
-%       topline=false,
-%       bottomline=false,
-%       innerleftmargin=1.5em,
-%       innerrightmargin=1.5em,
-%       innertopmargin=1em,
-%       innerbottommargin=1em,
-%       linewidth=0.5pt,
-%       skipabove=1em,
-%       skipbelow=1em
-%     ]}
+%     backgroundcolor=gray!10,
+%     linecolor=gray!60,
+%     leftline=true, rightline=false, topline=false, bottomline=false,
+%     innerleftmargin=1em, innerrightmargin=1.618em,
+%     innertopmargin=1em, innerbottommargin=1em,
+%     skipabove=1.618em, skipbelow=0em,
+%   ]}
 %   {\end{mdframed}}
 
 \renewenvironment{quote}
-  {\begin{mdframed}[backgroundcolor=gray!10,linecolor=gray!50,
-                    leftline=true,rightline=false,topline=false,bottomline=false,
-                    innerleftmargin=1em,innerrightmargin=1em,innertopmargin=1em,innerbottommargin=1em]}
-  {\end{mdframed}}
-
+  {\begin{samepage}
+   \begin{mdframed}[
+    backgroundcolor=gray!10,
+    linecolor=gray!60,
+    leftline=true, rightline=false, topline=false, bottomline=false,
+    innerleftmargin=1em, innerrightmargin=1.618em,
+    innertopmargin=1em, innerbottommargin=1em,
+    skipabove=1em, skipbelow=0em
+   ]}
+  {\end{mdframed}\vspace{-0.5em}\end{samepage}}
 
 
 \usepackage{caption}
