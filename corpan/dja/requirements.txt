@@ -1,0 +1,5 @@
+pypinyin==0.54.0
+hangul_romanize==0.1.0
+pykakasi==2.3.0
+fugashi==1.4.3
+unidic-lite==1.0.8

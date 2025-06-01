@@ -43,9 +43,16 @@ class Translation(models.Model):
     )
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     text = models.TextField()
+    romanization = models.TextField(
+        blank=True,
+        default="",
+        help_text="optional transliteration (e.g. pīnyīn for 中文)",
+    )
 
     class Meta:
         unique_together = [("entry", "language")]
 
     def __str__(self):
+        if self.romanization:
+            return f"[{self.language.code}] {self.text} ({self.romanization})"
         return f"[{self.language.code}] {self.text}"
