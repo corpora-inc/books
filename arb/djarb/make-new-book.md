@@ -55,7 +55,7 @@ Put in your definition. Here's an example:
 
 ```yaml
 title: Pirates
-subtitle: The Real Interesting History
+subtitle: Real, Interesting History
 purpose: |
   A complete book on pirates. Fact-dense, simple sentences, no wasted words. Interesting facts and stories, deep dives. Highly entertaining. Simply written. The facts speak for themselves without the author getting in the way.
 author: The Encorpora Team

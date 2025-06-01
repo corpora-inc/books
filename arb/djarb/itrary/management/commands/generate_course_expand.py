@@ -59,7 +59,7 @@ class Command(BaseCommand):
         course = Course.objects.get(name=course_title)
         self.stdout.write(f"Expanding course: {course_title}\n")
 
-        for unit in course.units.all()[2:]:
+        for unit in course.units.all():
             self.stdout.write(f"Expanding unit: {unit.name}\n")
             unit: Unit
             edit_unit(

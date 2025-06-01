@@ -277,6 +277,7 @@ class Command(BaseCommand):
                     "--lua-filter=hrule.lua",
                     "--toc-depth=2",
                     f"--metadata=title:{meta['title']}",
+                    f"--metadata=subtitle:{config.subtitle}",
                     f"--metadata=author:{meta['author']}",
                     f"--metadata=lang:{meta['lang']}",
                     f"--metadata=date:{meta['date']}",

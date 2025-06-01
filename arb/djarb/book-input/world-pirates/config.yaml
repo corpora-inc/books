@@ -1,13 +1,13 @@
-title: Pirates
-subtitle: Real Interesting History
+title: Pirates of the World
+subtitle: Real, Interesting History
 purpose: |
-  A complete book on pirates. Fact-dense, simple sentences, no wasted words. Interesting facts and stories, deep dives. Highly entertaining. All regions covered. Simply written. The facts speak for themselves without the author getting in the way.
+  A complete book on pirates. Fact-dense, simple sentences, no wasted words. Interesting facts and stories, deep dives. Highly entertaining. Visually stunning illustrations. All regions and cultures covered to dazzle the mind with history. Simply written. The facts speak for themselves without the author getting in the way.
 author: The Encorpora Team
 publisher: Corpora Inc
 units: 6
 lessons_per_unit: 3
 exercises_per_lesson: 0
-max_images_per_lesson: 3
+max_images_per_lesson: 5
 isbn: ""
 image_instructions: "Albrecht Durer-style black and white pencil (NO TEXT or CAPTION), historically accurate depiction of:"
 llm_instructions: |
