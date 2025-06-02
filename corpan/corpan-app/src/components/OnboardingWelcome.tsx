@@ -124,20 +124,28 @@ export function OnboardingWelcome() {
             <button
                 aria-label="Next"
                 className="
-                    flex items-center justify-center
-                    bg-black hover:bg-gray-900 text-white shadow-2xl
-                    rounded-full transition
-                    outline-none ring-0 border-none z-10
-                    text-3xl
-                "
+    flex items-center justify-center
+    bg-black hover:bg-gray-900
+    border border-purple-400
+    rounded-full
+    transition
+    outline-none ring-0 z-10
+    shadow-2xl
+    text-3xl
+  "
                 style={{
-                    boxShadow: "0 8px 64px 0 #0003",
-                    width: 72, height: 72,
+                    boxShadow: "0 8px 64px 0 #0002", // just a subtle shadow for lift
+                    width: 72,
+                    height: 72,
+                    borderWidth: 1,                // <--- 1px border, not 2
+                    borderStyle: "solid",
                 }}
                 onClick={() => setStep(1)}
             >
-                <ArrowRightCircle size={36} />
+                <ArrowRightCircle size={36} className="text-white" />
+                {/* If you want a purple icon: className="text-purple-500" */}
             </button>
+
         </div>
     );
 }
