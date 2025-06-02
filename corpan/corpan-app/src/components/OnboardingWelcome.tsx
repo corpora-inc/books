@@ -124,15 +124,15 @@ export function OnboardingWelcome() {
             <button
                 aria-label="Next"
                 className="
-    flex items-center justify-center
-    bg-black hover:bg-gray-900
-    border border-purple-400
-    rounded-full
-    transition
-    outline-none ring-0 z-10
-    shadow-2xl
-    text-3xl
-  "
+                    flex items-center justify-center
+                    bg-black hover:bg-gray-900
+                    border border-purple-400
+                    rounded-full
+                    transition
+                    outline-none ring-0 z-10
+                    shadow-2xl
+                    text-3xl
+                "
                 style={{
                     boxShadow: "0 8px 64px 0 #0002", // just a subtle shadow for lift
                     width: 72,
