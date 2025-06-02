@@ -31,6 +31,8 @@ export function MainExperience() {
     const rate = useSettingsStore((s) => s.rate);
     const t = useSettingsStore((s) => s.t);
 
+    const showRomanization = useSettingsStore((s) => s.showRomanization);
+
     const history = useHistoryStore((s) => s.history);
     const index = useHistoryStore((s) => s.index);
     const pushEntry = useHistoryStore((s) => s.pushEntry);
@@ -39,7 +41,6 @@ export function MainExperience() {
     // Fetch a random entry with all languages, push to history
     const fetchRandomEntry = async () => {
         setIndex(history.length - 1); // set index to the end of history
-        console.log("Domains", domains);
         try {
             const entry = await invoke<EntryOut>("get_random_entry_with_translations", { domains, levels });
             pushEntry(entry); // updates both history and index
@@ -62,11 +63,19 @@ export function MainExperience() {
     }, [index]);
 
     const curr = history[index] || null;
+
+    // Build translation lookup by language code
     const textByLang: Record<string, string> = {};
+    const romanizationByLang: Record<string, string | undefined> = {};
     if (curr) {
-        curr.translations.forEach((t) => { textByLang[t.language_code] = t.text; });
+        curr.translations.forEach((t) => {
+            textByLang[t.language_code] = t.text;
+            romanizationByLang[t.language_code] = t.romanization;
+        });
         textByLang["en"] = curr.en_text;
     }
+
+    console.log(showRomanization, romanizationByLang);
 
     // Navigation
     const handlePrev = () => index > 0 && setIndex(index - 1);
@@ -138,6 +147,13 @@ export function MainExperience() {
                             >
                                 {textByLang[code] || <span className="opacity-30">—</span>}
                             </div>
+                            {/* Render romanization if enabled and available */}
+                            {showRomanization && romanizationByLang[code] && (
+                                <div className="text-base text-gray-400 italic mt-1 select-text">
+                                    {romanizationByLang[code]}
+                                </div>
+                            )}
+
                             <motion.div
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 17 }}
@@ -165,7 +181,7 @@ export function MainExperience() {
             </div>
 
             {/* Floating Nav + Level/Domains */}
-            < div
+            <div
                 className="fixed bottom-0 left-0 w-full flex justify-center pb-6 z-50 pointer-events-none"
                 style={{ background: "transparent" }
                 }

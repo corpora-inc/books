@@ -6,7 +6,11 @@ export type EntryOut = {
     en_text: string;
     level: string;
     domains: string[];
-    translations: { language_code: string; text: string }[];
+    translations: {
+        language_code: string;
+        text: string;
+        romanization: string;
+    }[];
 };
 
 type HistoryState = {
