@@ -100,7 +100,27 @@ const EpubReader = () => {
         // Get table of contents
         const navigation = await bookInstance.loaded.navigation;
         if (navigation && navigation.toc) {
-          setToc(navigation.toc);
+          // Process TOC to ensure it's structured with up to 2 levels deep
+          const processedToc = navigation.toc.map((item: any) => {
+            // Process first level item
+            const firstLevelItem = {
+              label: item.label,
+              href: item.href,
+              subitems: []
+            };
+            
+            // Process second level items if they exist
+            if (item.subitems && Array.isArray(item.subitems)) {
+              firstLevelItem.subitems = item.subitems.map((subitem: any) => ({
+                label: subitem.label,
+                href: subitem.href
+              }));
+            }
+            
+            return firstLevelItem;
+          });
+          
+          setToc(processedToc);
         }
 
         setIsLoading(false);
@@ -544,7 +564,6 @@ const EpubReader = () => {
           settingsOpen={settingsOpen}
           setSettingsOpen={setSettingsOpen}
           THEMES={THEMES}
-
         />
 
         {/* EPUB viewer */}
