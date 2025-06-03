@@ -68,7 +68,6 @@ const EpubReader = () => {
   const [toc, setToc] = useState<any[]>([]);
   const [metadata, setMetadata] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [tocOpen, setTocOpen] = useState<boolean>(false);
   const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -310,7 +309,6 @@ const EpubReader = () => {
     if (rendition) {
       try {
         rendition.display(href);
-        setTocOpen(false);
         setSearchOpen(false);
       } catch (err) {
         console.error("Navigation error:", err);
@@ -436,54 +434,6 @@ const EpubReader = () => {
 
       {/* Main content area with sidebars */}
       <div className="flex flex-1 overflow-hidden relative">
-        {/* Table of contents sidebar */}
-        <aside
-          className={cn(
-            "absolute inset-y-0 left-0 w-64 md:w-72 lg:w-80 border-r z-10 transition-transform duration-300 ease-in-out transform",
-            currentTheme.className,
-            tocOpen ? "translate-x-0" : "-translate-x-full"
-          )}
-        >
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="font-semibold">Table of Contents</h2>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTocOpen(false)}
-              >
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-
-            <ScrollArea className="flex-1">
-              <nav className="p-2">
-                {toc.length === 0 ? (
-                  <p className="p-4 text-sm text-slate-500">
-                    No table of contents available
-                  </p>
-                ) : (
-                  <ul className="space-y-1">
-                    {toc.map((item, index) => (
-                      <li key={index}>
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-start text-sm h-auto py-2 px-3 font-normal"
-                          onClick={() => goToLocation(item.href || "")}
-                        >
-                          <span className="truncate">
-                            {item.label || "Unknown"}
-                          </span>
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </nav>
-            </ScrollArea>
-          </div>
-        </aside>
-
         {/* Search sidebar */}
         <aside
           className={cn(
