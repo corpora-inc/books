@@ -15,9 +15,9 @@ const HomeHeader = ({
   return (
     <div className=" bg-background/60 backdrop-blur-sm border-b sticky top-0 z-50">
       <div className="flex h-16 items-center justify-between  container px-4 mx-auto max-w-7xl">
-        <div className="flex items-center ">
-          <Avatar>
-            <AvatarImage src="/logo.png" />
+        <div className="flex items-center justify-center ">
+          <Avatar className="mr-2 h-10 w-10">
+            <AvatarImage src="/logo.png"  />
             <AvatarFallback>Logo</AvatarFallback>
           </Avatar>
           <h1 className="text-xl font-bold">Corporium</h1>
