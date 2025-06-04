@@ -266,9 +266,27 @@ export function HomeScreen({ books, onBookAdded }: HomeScreenProps) {
                           View All
                         </Button>
                       )}
+                                          <Tabs
+                      value={viewMode}
+                      onValueChange={(value) =>
+                        setViewMode(value as "card" | "list")
+                      }
+                      className="w-auto"
+                    >
+                      <TabsList className="h-8 px-1">
+                        <TabsTrigger value="card" className="h-6 w-7 px-0">
+                          <LayoutDashboardIcon className="w-4 h-4" />
+                        </TabsTrigger>
+                        <TabsTrigger value="list" className="h-6 w-7 px-0">
+                          <ListIcon className="w-4 h-4" />
+                        </TabsTrigger>
+                      </TabsList>
+                    </Tabs>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+                      {/* View Mode Toggle */}
+
                       {/* Advanced Search */}
                       <div className="flex items-center gap-2 bg-muted/30 rounded-lg px-3 py-2 border border-border/40">
                         <SearchIcon className="h-4 w-4 text-muted-foreground" />
@@ -277,65 +295,51 @@ export function HomeScreen({ books, onBookAdded }: HomeScreenProps) {
                           placeholder="Search books..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
-                          className="bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground w-32 sm:w-40"
+                          className="bg-transparent border-none outline-none text-sm placeholder:text-muted-foreground w-full"
+                          aria-label="Search books"
                         />
                       </div>
+                      <div className="flex items-center gap-4">
+                        {/* Filter Dropdown */}
+                        <div className="flex items-center gap-2">
+                          <FilterIcon className="h-4 w-4 text-muted-foreground" />
+                          <Select
+                            value={filterBy}
+                            onValueChange={(value: any) => setFilterBy(value)}
+                          >
+                            <SelectTrigger className="w-36 h-8">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="all">All Books</SelectItem>
+                              <SelectItem value="reading">Reading</SelectItem>
+                              <SelectItem value="completed">
+                                Completed
+                              </SelectItem>
+                              <SelectItem value="unread">Unread</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
 
-                      {/* Filter Dropdown */}
-                      <div className="flex items-center gap-2">
-                        <FilterIcon className="h-4 w-4 text-muted-foreground" />
-                        <Select
-                          value={filterBy}
-                          onValueChange={(value: any) => setFilterBy(value)}
-                        >
-                          <SelectTrigger className="w-32 h-8">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="all">All Books</SelectItem>
-                            <SelectItem value="reading">Reading</SelectItem>
-                            <SelectItem value="completed">Completed</SelectItem>
-                            <SelectItem value="unread">Unread</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        {/* Sort Dropdown */}
+                        <div className="flex items-center gap-2">
+                          <SortAscIcon className="h-4 w-4 text-muted-foreground" />
+                          <Select
+                            value={sortBy}
+                            onValueChange={(value: any) => setSortBy(value)}
+                          >
+                            <SelectTrigger className="w-36 h-8">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="recent">Recent</SelectItem>
+                              <SelectItem value="title">Title</SelectItem>
+                              <SelectItem value="author">Author</SelectItem>
+                              <SelectItem value="progress">Progress</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
-
-                      {/* Sort Dropdown */}
-                      <div className="flex items-center gap-2">
-                        <SortAscIcon className="h-4 w-4 text-muted-foreground" />
-                        <Select
-                          value={sortBy}
-                          onValueChange={(value: any) => setSortBy(value)}
-                        >
-                          <SelectTrigger className="w-32 h-8">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="recent">Recent</SelectItem>
-                            <SelectItem value="title">Title</SelectItem>
-                            <SelectItem value="author">Author</SelectItem>
-                            <SelectItem value="progress">Progress</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* View Mode Toggle */}
-                      <Tabs
-                        value={viewMode}
-                        onValueChange={(value) =>
-                          setViewMode(value as "card" | "list")
-                        }
-                        className="w-auto"
-                      >
-                        <TabsList className="h-8 px-1">
-                          <TabsTrigger value="card" className="h-6 w-7 px-0">
-                            <LayoutDashboardIcon className="w-4 h-4" />
-                          </TabsTrigger>
-                          <TabsTrigger value="list" className="h-6 w-7 px-0">
-                            <ListIcon className="w-4 h-4" />
-                          </TabsTrigger>
-                        </TabsList>
-                      </Tabs>
                     </div>
                   </div>
                   {/* Books Grid/List */}
