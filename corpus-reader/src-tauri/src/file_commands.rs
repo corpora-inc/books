@@ -2,11 +2,7 @@ use crate::config::LIBRARY_DIRECTORY;
 use crate::db_commands::add_book_to_db;
 use crate::epub_commands::{create_epub_cover, get_epub_metadata};
 use regex::Regex;
-use serde::Serialize;
-use std::fs::File;
-use std::io::{self, BufReader, Read};
 use std::{fs, path::PathBuf};
-use tauri::ipc::Channel;
 use tauri::Manager;
 use tauri_plugin_dialog::DialogExt;
 use tauri_plugin_fs::FsExt;
@@ -14,7 +10,7 @@ use tauri_plugin_fs::FsExt;
 const TEMPORAL_EPUB_PATH: &str = "temporal.epub";
 
 #[tauri::command]
-pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
+pub async fn pick_file(app: tauri::AppHandle) -> Result<String, String> {
     create_directory_if_not_exist(app.clone(), LIBRARY_DIRECTORY);
 
     let resource_dir = app.path().app_local_data_dir().unwrap();
@@ -26,10 +22,7 @@ pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
         Some(p) => p,
         None => {
             println!("No file selected by the user.");
-            // TODO: causes an error in the frontend
-            return Err("No file selected".to_string());
-            // return Result();
-            // return std::result::Result::Ok();
+            return Ok("No file selected by the user.".to_string());
         }
     };
 
@@ -71,7 +64,7 @@ pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
             "File {} already exists",
             new_file_path.to_str().unwrap().to_string()
         );
-        return Ok(());
+        return Ok("File already exists".to_string());
     }
     let _ = fs::rename(&temp_file_path, new_file_path.clone());
     add_book_to_db(
@@ -90,7 +83,7 @@ pub async fn pick_file(app: tauri::AppHandle) -> Result<(), String> {
     )
     .await;
 
-    Ok(())
+    Ok("File processed successfully".to_string())
 }
 
 #[tauri::command]
@@ -125,81 +118,4 @@ fn create_file_name(s1: String, s2: String) -> String {
     let s2_sanitized = trim_underscores_regex.replace_all(&s2_sanitized, "");
 
     format!("{}{}", s1_sanitized, s2_sanitized)
-}
-
-// Define our streaming events
-#[derive(Clone, Serialize)]
-#[serde(rename_all = "camelCase", tag = "event", content = "data")]
-pub enum FileStreamEvent {
-    Started { path: String, total_size: u64 },
-    Chunk { data: Vec<u8> },
-    Finished,
-    Error { message: String },
-}
-
-#[tauri::command]
-pub fn stream_file(path: String, on_event: Channel<FileStreamEvent>) -> Result<(), String> {
-    // Try to open the file
-    let file = match File::open(&path) {
-        Ok(file) => file,
-        Err(e) => {
-            let error_msg = format!("Failed to open file: {}", e);
-            let _ = on_event.send(FileStreamEvent::Error {
-                message: error_msg.clone(),
-            });
-            return Err(error_msg);
-        }
-    };
-
-    // Get file metadata for total size
-    let metadata = match file.metadata() {
-        Ok(meta) => meta,
-        Err(e) => {
-            let error_msg = format!("Failed to read file metadata: {}", e);
-            let _ = on_event.send(FileStreamEvent::Error {
-                message: error_msg.clone(),
-            });
-            return Err(error_msg);
-        }
-    };
-
-    // Send started event with file size
-    if let Err(e) = on_event.send(FileStreamEvent::Started {
-        path: path.clone(),
-        total_size: metadata.len(),
-    }) {
-        return Err(format!("Failed to send start event: {}", e));
-    }
-
-    // Create a buffered reader for efficient reading
-    let mut reader = BufReader::with_capacity(64 * 1024, file); // 64KB buffer
-    let mut buffer = vec![0; 64 * 1024];
-
-    // Read and send chunks
-    loop {
-        match reader.read(&mut buffer) {
-            Ok(0) => break, // EOF
-            Ok(bytes_read) => {
-                // Send chunk with actual data read
-                let chunk_data = buffer[0..bytes_read].to_vec();
-                if let Err(e) = on_event.send(FileStreamEvent::Chunk { data: chunk_data }) {
-                    return Err(format!("Failed to send chunk: {}", e));
-                }
-            }
-            Err(e) => {
-                let error_msg = format!("Error reading file: {}", e);
-                let _ = on_event.send(FileStreamEvent::Error {
-                    message: error_msg.clone(),
-                });
-                return Err(error_msg);
-            }
-        }
-    }
-
-    // Send finished event
-    if let Err(e) = on_event.send(FileStreamEvent::Finished) {
-        return Err(format!("Failed to send finished event: {}", e));
-    }
-
-    Ok(())
 }

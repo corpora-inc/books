@@ -129,15 +129,17 @@ export function HomeScreen({ books, onBookAdded }: HomeScreenProps) {
   const filteredBooks = getFilteredBooks();
 
   const handleAddBookToLibrary = async () => {
+    let message = "";
     try {
       setLoadingBooks(true);
-      await invoke("pick_file");
+      message = await invoke("pick_file");
       onBookAdded!();
     } catch (error) {
       console.error("Error opening file dialog or adding book:", error);
       toast.error("Could not open or process the EPUB file.");
     } finally {
       setLoadingBooks(false);
+      toast.info(message);
     }
   };
   return (
