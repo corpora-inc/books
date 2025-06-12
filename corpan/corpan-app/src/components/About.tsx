@@ -88,7 +88,7 @@ const About = () => {
         </div>
       </div>
       {/* Footer */}
-      <p className="items-end justify-self-end text-xs text-center text-muted-foreground pt-4">
+      <p className="items-end justify-self-end text-xs text-center text-muted-foreground py-4">
         © {new Date().getFullYear()} Corpora Inc — Corpán
       </p>
     </div>
