@@ -58,6 +58,8 @@ const FONT_FAMILIES = [
   { name: "Mono", value: '"JetBrains Mono", monospace' },
 ];
 
+const LARGE_SCREEN_BREAKPOINT = 1024; // Define a breakpoint for large screens
+
 const EpubReader = () => {
   const { bookPath } = useParams<{ bookPath: string }>();
   const [book, setBook] = useState<Book | null>(null);
@@ -76,7 +78,20 @@ const EpubReader = () => {
   const [fontFamily, setFontFamily] = useState<string>(FONT_FAMILIES[0].value);
   const [currentTheme, setCurrentTheme] = useState<Theme>(THEMES[0]);
   const [error, setError] = useState<string>("");
+  const [isLargeScreen, setIsLargeScreen] = useState<boolean>(
+    window.innerWidth >= LARGE_SCREEN_BREAKPOINT
+  );
   const viewerRef = useRef<HTMLDivElement>(null);
+
+  // Effect to handle screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= LARGE_SCREEN_BREAKPOINT);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Load book from path
   useEffect(() => {
@@ -148,17 +163,18 @@ const EpubReader = () => {
   useEffect(() => {
     if (book && viewerRef.current) {
       const viewer = viewerRef.current;
-      const viewerWidth = viewer.clientWidth;
-      const viewerHeight = viewer.clientHeight;
+      // Ensure viewer dimensions are positive before rendering
+      const viewerWidth = Math.max(1, viewer.clientWidth);
+      const viewerHeight = Math.max(1, viewer.clientHeight);
 
       // Create rendition
       const renditionInstance = book.renderTo(viewer, {
-          manager: "continuous",
+        manager: "continuous",
         width: viewerWidth,
         height: viewerHeight,
-        spread: "none",
+        spread: isLargeScreen ? "auto" : "none", // Use "auto" for two-page view on large screens
         flow: "paginated",
-         snap: true
+        snap: true,
       });
 
       // Apply initial theme and font settings
@@ -211,13 +227,13 @@ const EpubReader = () => {
       // Return cleanup function
       return () => {
         document.removeEventListener("keydown", handleKeyPress);
-        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("resize", handleResize); // Ensure this resize listener is also cleaned up
         if (renditionInstance) {
           renditionInstance.destroy();
         }
       };
     }
-  }, [book, viewerRef, fontSize, fontFamily, currentTheme]);
+  }, [book, viewerRef, fontSize, fontFamily, currentTheme, isLargeScreen]); // Add isLargeScreen to dependencies
 
   // Update theme and font settings when changed
   useEffect(() => {
