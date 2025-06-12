@@ -26,7 +26,7 @@ const About = () => {
 
 
   return (
-    <div className="flex flex-col min-h-full px-4 py-6 gap-4">
+    <div className="flex flex-col min-h-full gap-4">
       {/* Version Section */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

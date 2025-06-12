@@ -5,6 +5,8 @@ import { LevelsPicker } from "./LevelsPicker";
 import { RateAdjuster } from "./RateAdjuster";
 import { useSettingsStore } from "@/store/settings";
 import { Button } from "./ui/button";
+import About from "./About";
+import { Separator } from "./ui/separator";
 
 // Use the built-in modal with correct sizing
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -50,7 +52,13 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 >
                     {t("reonboard")}
                 </Button>
-            </DialogContent>
+                <Separator className="mt-4" />
+                <div className="space-y-1 mb-4">
+                    <h4 className="text-2xl leading-none font-medium text-center">About Corpán</h4>
+                    <p className="text-muted-foreground text-center">Instant polyglot practice</p>
+                </div>
+                <About />
+                </DialogContent>
         </Dialog>
     );
 }
