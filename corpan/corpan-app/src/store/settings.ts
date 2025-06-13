@@ -17,6 +17,9 @@ export const ALL_DOMAINS = [
     "civic", "technology", "environment", "emergency", "culture", "everyday",
 ];
 
+export const ALL_TEXT_SIZES = ["small", "medium", "large", "extra-large"] as const;
+export type TextSizeType = typeof ALL_TEXT_SIZES[number];
+
 type SettingsState = {
     languages: string[];
     setLanguages: (codes: string[]) => void;
@@ -27,6 +30,9 @@ type SettingsState = {
     reset: () => void;
     rate: number;
     setRate: (rate: number) => void;
+
+    textSize: TextSizeType;
+    setTextSize: (size: TextSizeType) => void;
 
     topLang: () => string;
     t: (key: TranslationKey) => string;
@@ -53,9 +59,12 @@ export const useSettingsStore = create<SettingsState>()(
                     languages: ["en", "es", "pt-BR", "fr", "it", "ko-polite"],
                     domains: [...ALL_DOMAINS],
                     levels: ["A1"],
+                    textSize: "medium", // Add textSize to reset
                 }),
             rate: 0.7,
             setRate: (rate) => set({ rate }),
+            textSize: "medium",
+            setTextSize: (size) => set({ textSize: size }),
 
             topLang: () => get().languages[0],
 
