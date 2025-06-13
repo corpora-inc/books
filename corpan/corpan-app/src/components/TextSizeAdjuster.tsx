@@ -12,7 +12,7 @@ export function TextSizeAdjuster() {
             <Label htmlFor="text-size-adjuster" className="block text-sm font-medium text-gray-700 mb-2">
                 {t("Text Size")}
             </Label>
-            <div className="flex space-x-2" id="text-size-adjuster">
+            <div className="flex flex-wrap gap-2" id="text-size-adjuster">
                 {ALL_TEXT_SIZES.map((size) => (
                     <Button
                         key={size}
