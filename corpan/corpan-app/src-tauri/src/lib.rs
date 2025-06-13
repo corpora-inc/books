@@ -15,6 +15,7 @@ use tauri_plugin_opener;
 struct TranslationOut {
     language_code: String,
     text: String,
+    romanization: String,
 }
 
 /// Return type for the random entry with all translations
@@ -128,7 +129,7 @@ fn get_random_entry_with_translations(
     // Get all translations for this entry
     let mut translation_stmt = conn
         .prepare(
-            "SELECT l.code, t.text
+            "SELECT l.code, t.text, t.romanization
          FROM cor_translation t
          JOIN cor_language l ON l.id = t.language_id
          WHERE t.entry_id = ?",
@@ -139,7 +140,8 @@ fn get_random_entry_with_translations(
         .query_map([entry_id], |row| {
             let lang_code: String = row.get(0)?;
             let text: String = row.get(1)?;
-            Ok((lang_code, text))
+            let romanization: String = row.get(2)?;
+            Ok((lang_code, text, romanization))
         })
         .map_err(|e| e.to_string())?;
 
@@ -148,7 +150,7 @@ fn get_random_entry_with_translations(
 
     let mut translations = vec![];
     for res in translation_rows {
-        let (lang, text) = res.map_err(|e| e.to_string())?;
+        let (lang, text, romanization) = res.map_err(|e| e.to_string())?;
         if allowed_langs
             .as_ref()
             .map_or(true, |set| set.contains(&lang))
@@ -156,6 +158,7 @@ fn get_random_entry_with_translations(
             translations.push(TranslationOut {
                 language_code: lang,
                 text,
+                romanization,
             });
         }
     }

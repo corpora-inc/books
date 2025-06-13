@@ -10,7 +10,7 @@ export const ALL_LANGUAGES = [
     "en", "ko-polite", "es", "fr", "de", "pt-BR", "ja", "zh-Hans", "ar", "ru", "it", "hi",
 ];
 
-export const ALL_LEVELS = ["A1", "A2", "B1"];
+export const ALL_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
 export const ALL_DOMAINS = [
     "travel", "business", "education", "social", "health", "housing", "numbers",
@@ -27,6 +27,9 @@ type SettingsState = {
     reset: () => void;
     rate: number;
     setRate: (rate: number) => void;
+
+    showRomanization: boolean;
+    setShowRomanization: (val: boolean) => void;
 
     topLang: () => string;
     t: (key: TranslationKey) => string;
@@ -56,6 +59,9 @@ export const useSettingsStore = create<SettingsState>()(
                 }),
             rate: 0.7,
             setRate: (rate) => set({ rate }),
+
+            showRomanization: true,
+            setShowRomanization: (val) => set({ showRomanization: val }),
 
             topLang: () => get().languages[0],
 

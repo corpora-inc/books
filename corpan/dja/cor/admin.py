@@ -19,7 +19,7 @@ class DomainAdmin(admin.ModelAdmin):
 class TranslationInline(admin.TabularInline):
     model = Translation
     extra = 0
-    fields = ("language", "text")
+    fields = ("language", "text", "romanization")
     readonly_fields = ("language",)
     show_change_link = True
 

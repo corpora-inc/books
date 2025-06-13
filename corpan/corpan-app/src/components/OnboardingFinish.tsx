@@ -25,7 +25,7 @@ export function OnboardingFinish() {
             {/* Header: Back / Title / Finish */}
             <div className="w-full max-w-xl mx-auto flex flex-row items-center justify-between py-5 px-2">
                 <button
-                    className="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition"
+                    className="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition border"
                     onClick={() => setStep(3)}
                     tabIndex={0}
                 >
@@ -39,7 +39,7 @@ export function OnboardingFinish() {
                     {t("welcome_title")}
                 </div>
                 <button
-                    className="flex items-center justify-center bg-black hover:bg-gray-900 text-white rounded-full p-3 shadow transition"
+                    className="flex items-center justify-center rounded-full p-3 shadow transition bg-black hover:bg-gray-900 text-white border border-purple-400"
                     onClick={() => setOnboarded(true)}
                     tabIndex={0}
                 >
@@ -52,24 +52,18 @@ export function OnboardingFinish() {
                     <div className="text-lg text-gray-700" dir={dir()}>
                         {t("welcome_body")}
                     </div>
-                    <button
-                        // className="mt-3 px-8 py-4 bg-purple-700 hover:bg-purple-800 text-white rounded-2xl font-semibold text-lg shadow-lg flex items-center gap-3 transition"
-                        className="
-                        mt-5 px-5 py-4
-                        bg-white
-                        border-2 border-purple-700
-                        hover:bg-purple-50
-                        text-purple-700
-                        hover:text-purple-800
-                        rounded-2xl font-semibold text-lg shadow-lg
-                        flex items-center gap-3 transition justify-center
-                        "
-                        onClick={handleVisit}
-                        dir={dir()}
-                    >
-                        {t("welcome_visit")}
-                        <ExternalLink size={22} />
-                    </button>
+                    <div className="mt-7 text-center">
+                        <button
+                            className="inline-flex items-center gap-1 text-purple-700 underline hover:text-purple-900 text-base font-medium"
+                            style={{ padding: 0, background: "none", border: "none" }}
+                            onClick={handleVisit}
+                            tabIndex={0}
+                            dir={dir()}
+                        >
+                            {t("welcome_visit")}
+                            <ExternalLink size={18} />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
