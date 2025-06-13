@@ -54,8 +54,8 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 </Button>
                 <Separator className="mt-4" />
                 <div className="space-y-1 mb-4">
-                    <h4 className="text-2xl leading-none font-medium text-center">About Corpán</h4>
-                    <p className="text-muted-foreground text-center">Instant polyglot practice</p>
+                    <h4 className="text-2xl leading-none font-medium text-center">{t("About Corpán" as any)}</h4>
+                    <p className="text-muted-foreground text-center">{t("Instant polyglot practice" as any)}</p>
                 </div>
                 <About />
                 </DialogContent>
