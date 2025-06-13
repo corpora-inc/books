@@ -5,6 +5,7 @@ import { LevelsPicker } from "./LevelsPicker";
 import { RateAdjuster } from "./RateAdjuster";
 import { useSettingsStore } from "@/store/settings";
 import { Button } from "./ui/button";
+import { TextSizeAdjuster } from "./TextSizeAdjuster";
 
 // Use the built-in modal with correct sizing
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -37,6 +38,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 <DialogDescription dir={dir()}>
                     {t("Adjust to your preferences")}
                 </DialogDescription>
+                <TextSizeAdjuster />
                 <RateAdjuster />
                 <LanguageSelectOrder />
                 <LevelsPicker />
