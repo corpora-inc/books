@@ -64,6 +64,7 @@ export const TRANSLATIONS = {
         "Loading...": "Loading...",
         "About Corpán": "About Corpán",
         "Instant polyglot practice": "Instant polyglot practice",
+        "Show Romanization": "Show Romanization",
     },
     "ko-polite": {
         "en": "영어",
@@ -131,6 +132,7 @@ export const TRANSLATIONS = {
         "Loading...": "로드 중...",
         "About Corpán": "Corpán 정보",
         "Instant polyglot practice": "즉석 다국어 연습",
+        "Show Romanization": "로마자 표기 보기",
     },
     "es": {
         "en": "Inglés",
@@ -197,6 +199,8 @@ export const TRANSLATIONS = {
         "Loading...": "Cargando...",
         "About Corpán": "Sobre Corpán",
         "Instant polyglot practice": "Práctica políglota instantánea",
+
+        "Show Romanization": "Mostrar romanización",
     },
     "fr": {
         "en": "Anglais",
@@ -263,6 +267,9 @@ export const TRANSLATIONS = {
         "Loading...": "Chargement...",
         "About Corpán": "À propos de Corpán",
         "Instant polyglot practice": "Pratique polyglotte instantanée",
+
+        "Show Romanization": "Afficher la romanisation",
+
     },
     "de": {
         "en": "Englisch",
@@ -329,6 +336,8 @@ export const TRANSLATIONS = {
         "Loading...": "Wird geladen...",
         "About Corpán": "Über Corpán",
         "Instant polyglot practice": "Sofortige Polyglott-Übung",
+        "Show Romanization": "Romanisierung anzeigen",
+
     },
     "pt-BR": {
         "en": "Inglês",
@@ -395,6 +404,8 @@ export const TRANSLATIONS = {
         "Loading...": "Carregando...",
         "About Corpán": "Sobre Corpán",
         "Instant polyglot practice": "Prática instantânea de poliglota",
+
+        "Show Romanization": "Mostrar Romanização",
     },
     "ja": {
         "en": "英語",
@@ -461,6 +472,7 @@ export const TRANSLATIONS = {
         "Loading...": "読み込み中...",
         "About Corpán": "Corpánについて",
         "Instant polyglot practice": "インスタント多言語練習",
+        "Show Romanization": "ローマ字表記を表示",
     },
     "zh-Hans": {
         "en": "英语",
@@ -527,6 +539,7 @@ export const TRANSLATIONS = {
         "Loading...": "加载中...",
         "About Corpán": "关于 Corpán",
         "Instant polyglot practice": "即时多语言练习",
+        "Show Romanization": "显示罗马化",
     },
     "ar": {
         "en": "الإنجليزية",
@@ -593,6 +606,7 @@ export const TRANSLATIONS = {
         "Loading...": "جار التحميل...",
         "About Corpán": "حول Corpán",
         "Instant polyglot practice": "ممارسة متعددة اللغات فورية",
+        "Show Romanization": "إظهار الرومنة",
     },
     "ru": {
         "en": "Английский",
@@ -659,6 +673,7 @@ export const TRANSLATIONS = {
         "Loading...": "Загрузка...",
         "About Corpán": "О Corpán",
         "Instant polyglot practice": "Мгновенная практика на нескольких языках",
+        "Show Romanization": "Показать романизацию",
     },
     "it": {
         "en": "Inglese",
@@ -725,6 +740,7 @@ export const TRANSLATIONS = {
         "Loading...": "Caricamento...",
         "About Corpán": "Informazioni su Corpán",
         "Instant polyglot practice": "Pratica poliglotta istantanea",
+        "Show Romanization": "Mostra romanizzazione",
     },
     "hi": {
         "en": "अंग्रेज़ी",
@@ -791,6 +807,8 @@ export const TRANSLATIONS = {
         "Loading...": "लोड हो रहा है...",
         "About Corpán": "Corpán के बारे में",
         "Instant polyglot practice": "तुरंत पॉलीग्लॉट अभ्यास",
+        "Show Romanization": "रोमनाइजेशन दिखाएं",
+
     },
 } as const;
 
