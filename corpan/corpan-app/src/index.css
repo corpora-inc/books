@@ -15,6 +15,27 @@ body,
     overflow: hidden;
 }
 
+/* Apply base text size and allow overriding */
+body {
+    font-size: 16px; /* Default base size */
+}
+
+.text-small {
+    font-size: 0.8rem; 
+}
+
+.text-medium {
+    font-size: 1rem; 
+}
+
+.text-large {
+    font-size: 1.2rem; 
+}
+
+.text-extra-large {
+    font-size: 1.5rem; 
+}
+
 html,
 body,
 #root,
