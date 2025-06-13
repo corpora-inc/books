@@ -61,6 +61,9 @@ export const TRANSLATIONS = {
         "medium": "Medium",
         "large": "Large",
         "extra-large": "Extra Large",
+        "test_tts": "Test your TTS settings by clicking the buttons below:",
+        "Show Romanization": "Show Romanization",
+
     },
     "ko-polite": {
         "en": "영어",
@@ -125,6 +128,8 @@ export const TRANSLATIONS = {
         "medium": "보통",
         "large": "큼",
         "extra-large": "아주 큼",
+        "Show Romanization": "로마자 표기 보기",
+
     },
     "es": {
         "en": "Inglés",
@@ -188,6 +193,8 @@ export const TRANSLATIONS = {
         "medium": "Mediano",
         "large": "Grande",
         "extra-large": "Extra Grande",
+        "test_tts": "Prueba la configuración de TTS haciendo clic en los botones de abajo:",
+        "Show Romanization": "Mostrar romanización",
     },
     "fr": {
         "en": "Anglais",
@@ -251,6 +258,7 @@ export const TRANSLATIONS = {
         "medium": "Moyen",
         "large": "Grand",
         "extra-large": "Très grand",
+        "Show Romanization": "Afficher la romanisation",
     },
     "de": {
         "en": "Englisch",
@@ -314,6 +322,7 @@ export const TRANSLATIONS = {
         "medium": "Mittel",
         "large": "Groß",
         "extra-large": "Sehr groß",
+        "Show Romanization": "Romanisierung anzeigen",
     },
     "pt-BR": {
         "en": "Inglês",
@@ -377,6 +386,7 @@ export const TRANSLATIONS = {
         "medium": "Médio",
         "large": "Grande",
         "extra-large": "Extra Grande",
+        "Show Romanization": "Mostrar Romanização",
     },
     "ja": {
         "en": "英語",
@@ -440,6 +450,7 @@ export const TRANSLATIONS = {
         "medium": "中",
         "large": "大",
         "extra-large": "特大",
+        "Show Romanization": "ローマ字表記を表示",
     },
     "zh-Hans": {
         "en": "英语",
@@ -503,6 +514,7 @@ export const TRANSLATIONS = {
         "medium": "中",
         "large": "大",
         "extra-large": "特大",
+        "Show Romanization": "显示罗马化",
     },
     "ar": {
         "en": "الإنجليزية",
@@ -566,6 +578,7 @@ export const TRANSLATIONS = {
         "medium": "متوسط",
         "large": "كبير",
         "extra-large": "كبير جدًا",
+        "Show Romanization": "إظهار الرومنة",
     },
     "ru": {
         "en": "Английский",
@@ -629,6 +642,7 @@ export const TRANSLATIONS = {
         "medium": "Средний",
         "large": "Большой",
         "extra-large": "Очень большой",
+        "Show Romanization": "Показать романизацию",
     },
     "it": {
         "en": "Inglese",
@@ -692,6 +706,7 @@ export const TRANSLATIONS = {
         "medium": "Medio",
         "large": "Grande",
         "extra-large": "Molto grande",
+        "Show Romanization": "Mostra romanizzazione",
     },
     "hi": {
         "en": "अंग्रेज़ी",
@@ -755,6 +770,7 @@ export const TRANSLATIONS = {
         "medium": "मध्यम",
         "large": "बड़ा",
         "extra-large": "अतिभार",
+        "Show Romanization": "रोमनाइजेशन दिखाएं",
     },
 } as const;
 

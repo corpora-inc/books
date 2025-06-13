@@ -3,6 +3,8 @@ import { LanguageSelectOrder } from "./LanguageSelectOrder";
 import { DomainPicker } from "./DomainPicker";
 import { LevelsPicker } from "./LevelsPicker";
 import { RateAdjuster } from "./RateAdjuster";
+import { RomanizationToggle } from "./RomanizationToggle";
+
 import { useSettingsStore } from "@/store/settings";
 import { Button } from "./ui/button";
 import { TextSizeAdjuster } from "./TextSizeAdjuster";
@@ -45,6 +47,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                     <LanguageSelectOrder />
                     <LevelsPicker />
                     <DomainPicker />
+                  <RomanizationToggle />
                 </div>
                 <Button
                     onClick={() => {
@@ -52,9 +55,16 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                         setOnboardingStep(0);
                         onClose();
                     }}
+                    className="
+                        mt-5 w-full rounded-xl px-6 py-8
+                        focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2
+                        transition-colors cursor-pointer
+                        shadow-sm
+                    "
                 >
                     {t("reonboard")}
                 </Button>
+
             </DialogContent>
         </Dialog>
     );

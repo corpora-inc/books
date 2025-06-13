@@ -27,7 +27,7 @@ export function OnboardingPickLearning() {
             {/* Header always on top */}
             <div className="w-full max-w-xl mx-auto flex flex-row items-center justify-between py-5 px-2">
                 <button
-                    className="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition"
+                    className="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition border"
                     onClick={() => setStep(1)}
                     tabIndex={0}
                 >
@@ -43,8 +43,8 @@ export function OnboardingPickLearning() {
                 <button
                     className={`flex items-center justify-center rounded-full p-3 shadow transition
                         ${canProceed
-                            ? "bg-black hover:bg-gray-900 text-white"
-                            : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                            ? "bg-black hover:bg-gray-900 text-white border border-purple-400"
+                            : "bg-gray-200 text-gray-400 border cursor-not-allowed"
                         }`}
                     onClick={() => canProceed && setStep(3)}
                     disabled={!canProceed}
