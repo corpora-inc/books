@@ -7,6 +7,7 @@ import { RomanizationToggle } from "./RomanizationToggle";
 
 import { useSettingsStore } from "@/store/settings";
 import { Button } from "./ui/button";
+import { TextSizeAdjuster } from "./TextSizeAdjuster";
 import About from "./About";
 import { Separator } from "./ui/separator";
 
@@ -28,6 +29,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                     max-h-[100dvh] h-[100dvh] md:h-auto md:max-h-[95dvh]
                     overflow-y-auto rounded-none bg-white
                     md:rounded-lg
+                    flex flex-col
                 "
                 style={{
                     paddingBottom: "2rem",
@@ -41,6 +43,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 <DialogDescription dir={dir()}>
                     {t("Adjust to your preferences")}
                 </DialogDescription>
+                <TextSizeAdjuster />
                 <RateAdjuster />
                 <LanguageSelectOrder />
                 <LevelsPicker />

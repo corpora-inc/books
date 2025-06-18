@@ -24,12 +24,22 @@ function getPlatformPadding() {
     return 135;
 }
 
+// Even lamer but still fine
+const paddingAdjustMap: Record<string, number> = {
+    "small": -5,
+    "medium": 25,
+    "large": 50,
+    "extra-large": 75,
+}
+
 export function MainExperience() {
     const languages = useSettingsStore((s) => s.languages);
     const domains = useSettingsStore((s) => s.domains);
     const levels = useSettingsStore((s) => s.levels);
     const rate = useSettingsStore((s) => s.rate);
     const t = useSettingsStore((s) => s.t);
+    const textSize = useSettingsStore((s) => s.textSize);
+    // console.log("textSize", textSize);
 
     const showRomanization = useSettingsStore((s) => s.showRomanization);
 
@@ -114,7 +124,7 @@ export function MainExperience() {
                 className="flex-1 w-full overflow-y-auto min-h-0 px-2 pt-16 flex flex-col"
                 ref={scrollRef}
                 style={{
-                    paddingBottom: `${getPlatformPadding()}px`,
+                    paddingBottom: `${getPlatformPadding() + paddingAdjustMap[textSize]}px`,
                 }}
             >
 

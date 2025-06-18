@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    // v4 auto‐discovers your HTML/JSX/TSX content—no `content` array required.
+    safelist: [
+        'text-small',
+        'text-medium',
+        'text-large',
+        'text-extra-large',
+    ],
     theme: {
         extend: {
             // your customizations here
