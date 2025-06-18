@@ -7,6 +7,8 @@ import { RomanizationToggle } from "./RomanizationToggle";
 
 import { useSettingsStore } from "@/store/settings";
 import { Button } from "./ui/button";
+import About from "./About";
+import { Separator } from "./ui/separator";
 
 // Use the built-in modal with correct sizing
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -59,16 +61,13 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 >
                     {t("reonboard")}
                 </Button>
-<<<<<<< Updated upstream
-
-=======
                 <Separator className="mt-5" />
                 <div className="space-y-1 my-5">
                     <h4 className="text-2xl leading-none font-medium text-center">{t("About Corpán" as any)}</h4>
                     <p className="text-muted-foreground text-center">{t("Instant polyglot practice" as any)}</p>
                 </div>
                 <About />
->>>>>>> Stashed changes
+
             </DialogContent>
         </Dialog>
     );
