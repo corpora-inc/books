@@ -15,8 +15,9 @@ from itrary.utils import BookConfig
 
 # TODO: hrm .. this required XAI_API_KEY to be set ..
 # I guess we want to always pass in the llm provider to the agent?
-llm = load_llm_provider("xai")
-openai = load_llm_provider("openai")
+# llm = load_llm_provider("xai")
+# openai = load_llm_provider("openai")
+llm = load_llm_provider("openai")
 
 
 MARKDOWN_CONTENT_INSTRUCTIONS = """
@@ -562,7 +563,7 @@ def get_unit_intro(
                     f"```\n{MARKDOWN_CONTENT_INSTRUCTIONS}\n```\n\n"
                     "In addition, for the unit introduction specifically, "
                     "DO NOT: USE ANY headers. "
-                    "DO NOT: USE ANY IMAGE tags. "
+                    "You may use 0-1 images if you can think of a really good one. "
                     "**DO** - use bold, italics, blockquotes, and bullets to make key points stand out. "
                     "Give SPECIFIC background information that puts the unit into context "
                     "and prepares the reader for the content of the unit. "
@@ -572,7 +573,7 @@ def get_unit_intro(
                     "Instead, write a compelling introduction that is fact-dense and concise. "
                     "Use bold, italics, and blockquotes to make key points stand out. "
                     "Effectively summarize the content of the unit in a cool, neutral way. "
-                    "Write for the target audience implied by the course title and subtitle."
+                    "Write for the target audience implied by the course title, subtitle and purpose."
                 ),
             ),
             ChatCompletionTextMessage(
