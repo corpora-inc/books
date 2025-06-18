@@ -59,7 +59,16 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 >
                     {t("reonboard")}
                 </Button>
+<<<<<<< Updated upstream
 
+=======
+                <Separator className="mt-5" />
+                <div className="space-y-1 my-5">
+                    <h4 className="text-2xl leading-none font-medium text-center">{t("About Corpán" as any)}</h4>
+                    <p className="text-muted-foreground text-center">{t("Instant polyglot practice" as any)}</p>
+                </div>
+                <About />
+>>>>>>> Stashed changes
             </DialogContent>
         </Dialog>
     );
