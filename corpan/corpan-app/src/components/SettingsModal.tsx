@@ -43,14 +43,12 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 <DialogDescription dir={dir()}>
                     {t("Adjust to your preferences")}
                 </DialogDescription>
-                <div className="flex-grow overflow-y-auto">
-                    <TextSizeAdjuster />
-                    <RateAdjuster />
-                    <LanguageSelectOrder />
-                    <LevelsPicker />
-                    <DomainPicker />
-                    <RomanizationToggle />
-                </div>
+                <TextSizeAdjuster />
+                <RateAdjuster />
+                <LanguageSelectOrder />
+                <LevelsPicker />
+                <DomainPicker />
+                <RomanizationToggle />
                 <Button
                     onClick={() => {
                         setOnboarded(false);
