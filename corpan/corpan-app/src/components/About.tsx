@@ -4,7 +4,7 @@ import { openUrl } from "@tauri-apps/plugin-opener";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, Globe, Mail, Info } from "lucide-react";
-import { useSettingsStore } from "@/store/settings"; // Import the settings store
+import { useSettingsStore } from "@/store/settings";
 
 const WEBSITE_URL = "https://encorpora.io";
 const GITHUB_ISSUES = "https://github.com/corpora-inc/encorpora/issues";
@@ -12,7 +12,7 @@ const SUPPORT_EMAIL = "team@encorpora.io";
 
 const About = () => {
   const [appVersion, setAppVersion] = useState<string>("");
-  const t = useSettingsStore((s) => s.t); // Get the translation function
+  const t = useSettingsStore((s) => s.t);
 
   useEffect(() => {
     (async () => {
@@ -25,7 +25,6 @@ const About = () => {
       }
     })();
   }, []);
-
 
   return (
     <div className="flex flex-col min-h-full gap-4">
@@ -49,7 +48,7 @@ const About = () => {
         <Button
           variant="outline"
           size="sm"
-          className="gap-1.5"
+          className="gap-1.5 hover:bg-muted cursor-pointer"
           onClick={() => openUrl(WEBSITE_URL)}
         >
           <Globe className="h-4 w-4" />
@@ -72,7 +71,7 @@ const About = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-1.5"
+            className="gap-1.5 hover:bg-muted cursor-pointer"
             onClick={() => openUrl(GITHUB_ISSUES)}
           >
             <GithubIcon className="h-4 w-4" />
@@ -81,7 +80,7 @@ const About = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-1.5"
+            className="gap-1.5 hover:bg-muted cursor-pointer"
             onClick={() => openUrl(`mailto:${SUPPORT_EMAIL}`)}
           >
             <Mail className="h-4 w-4" />
@@ -89,6 +88,7 @@ const About = () => {
           </Button>
         </div>
       </div>
+
       {/* Footer */}
       <p className="items-end justify-self-end text-xs text-center text-muted-foreground py-4">
         © {new Date().getFullYear()} Corpora Inc — Corpán
