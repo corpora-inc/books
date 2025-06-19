@@ -10,8 +10,10 @@ exercises_per_lesson: 0
 max_images_per_lesson: 2
 isbn: ""
 image_instructions: |
-  Create an impressive colored-pencil illustration with Dürer-style cross-hatching (in color), ensuring historical and scientific accuracy for Central Africa. Depict scenes or figures described in the caption—costumes, architecture, landscapes, and flora/fauna must reflect the correct era and region (e.g., Kongo royal courts, Luba villages, Congo River forests, rainforest wildlife). Avoid anachronisms and do NOT include any text in the image.
+  Create a serious, scholarly colored-pencil illustration with Dürer-style cross-hatching (in color), emphasizing historical and scientific accuracy for Central Africa. The scene should directly reflect the caption, depicting realistic costumes, architecture, landscapes, and flora/fauna from the correct region and era (e.g., Kongo royal courts, Luba villages, Congo River forests).
+  Avoid decorative or irrelevant animals such as monkeys, parrots, or exaggerated wildlife. Do not include any fantasy, cartoon elements, or symbolic imagery. The image should feel appropriate for an academic history textbook—realistic, respectful, and focused on the human or cultural subject matter. Do not include any text.
 negative_image_instructions: |
+
   No parrots. lol. No giant monkeys. Don't be racist. lol.
 structure: |
   The Congo: Heart of Africa
