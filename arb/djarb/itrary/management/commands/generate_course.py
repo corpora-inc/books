@@ -64,5 +64,6 @@ class Command(BaseCommand):
                 course_outline=course_outline,
                 config=config,
             )
+            self.stdout.write(f"--- {unit.name} written\n")
 
             unit.rewrite_full_markdown(unit_markdown)

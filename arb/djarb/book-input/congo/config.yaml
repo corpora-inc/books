@@ -1,0 +1,103 @@
+title: The Congo
+subtitle: Heart of Africa
+purpose: |
+  A clear, illustrated history of the Congo for curious readers of any age. This book covers the land, rivers, forests, and people of Central Africa - from prehistory to the rise of kingdoms like Kongo, Luba, and Lunda, to the arrival of the Portuguese in the 1400s and the long arc through colonialism and independence to today. It's meant to be read straight through, with no activities, no moralizing, and no shortcuts - just the real story, told plainly and with care.
+author: The Encorpora Team
+publisher: Corpora Inc
+units: 10
+lessons_per_unit: 5
+exercises_per_lesson: 0
+max_images_per_lesson: 2
+isbn: ""
+image_instructions: |
+  Create a serious, scholarly colored-pencil illustration with Dürer-style cross-hatching (in color), emphasizing historical and scientific accuracy for Central Africa. The scene should directly reflect the caption, depicting realistic costumes, architecture, landscapes, and flora/fauna from the correct region and era (e.g., Kongo royal courts, Luba villages, Congo River forests).
+  Avoid decorative or irrelevant animals such as monkeys, parrots, or exaggerated wildlife. Do not include any fantasy, cartoon elements, or symbolic imagery. The image should feel appropriate for an academic history textbook—realistic, respectful, and focused on the human or cultural subject matter. Do not include any text.
+negative_image_instructions: |
+
+  No parrots. lol. No giant monkeys. Don't be racist. lol.
+structure: |
+  The Congo: Heart of Africa
+  ├── 1. The Land of the Congo
+  │   ├── The Congo River and Its Basin
+  │   ├── Rainforests, Mountains, and Savannas
+  │   ├── Wildlife and Natural Resources
+  │   ├── Climate and Seasons
+  │   └── Early Human Settlements
+  ├── 2. Peoples and Languages
+  │   ├── Bantu Migrations
+  │   ├── Ethnic Groups and Languages
+  │   ├── Daily Life in Villages
+  │   ├── Farming, Fishing, and Trade
+  │   └── Oral Traditions and Music
+  ├── 3. Deep Prehistory
+  │   ├── Ancient Tools and Rock Art
+  │   ├── Early Foragers and Herders
+  │   ├── Iron and the First Farmers
+  │   ├── Archaeological Clues from the Soil
+  │   └── The Long Memory of the Land
+  ├── 4. The Rise of Kingdoms
+  │   ├── What Is a Kingdom?
+  │   ├── Kongo: A River Kingdom
+  │   ├── Luba: The Empire of the Lakes
+  │   ├── Lunda: Trade and Expansion
+  │   └── Other Kingdoms and Clans
+  ├── 5. The World Comes to the Congo (1400s-1600s)
+  │   ├── Portuguese Ships on the Coast
+  │   ├── King Nzinga a Nkuwu and Christianity
+  │   ├── Trade: Cloth, Ivory, Copper, and People
+  │   ├── Mbanza Kongo and the Letters to Europe
+  │   └── Guns, Slaves, and Shifting Power
+  ├── 6. Turmoil and Transformation (1600s-1800s)
+  │   ├── Civil Wars and Broken Kingdoms
+  │   ├── Rise of New Powers (Yaka, Chokwe, Kuba)
+  │   ├── Slave Raiding and Long Marches
+  │   ├── Arab-Swahili Trade Routes
+  │   └── Life in the Forest, Life in the Kingdoms
+  ├── 7. The Scramble and the Scars (1800s-1908)
+  │   ├── Explorers and Missionaries
+  │   ├── Leopold II and the Congo Free State
+  │   ├── Rubber, Whips, and Resistance
+  │   ├── International Outcry and Reform
+  │   └── From King's Colony to Belgian Rule
+  ├── 8. Colonial Congo (1908-1960)
+  │   ├── Railroads and Forced Labor
+  │   ├── Christian Schools and Colonial Law
+  │   ├── Cities, Mines, and Cotton
+  │   ├── Identity and Resistance
+  │   └── The Road to Independence
+  ├── 9. Independence and Upheaval (1960-1997)
+  │   ├── Lumumba and the Congo Crisis
+  │   ├── Mobutu's Rule and “Zaire”
+  │   ├── Cold War Politics
+  │   ├── Everyday Life under a Strongman
+  │   └── Collapse and Conflict
+  └── 10. The Congo Today (1997-Present)
+      ├── War in the Great Lakes Region
+      ├── Minerals and Global Connections
+      ├── Kinshasa: Music, Markets, and Power
+      ├── Art, Culture, and Modern Life
+      └── Hope and Struggle in a New Century
+llm_instructions: |
+  Write seamless textbook content in plain, concise language. Dive directly into facts—no "In this lesson" intros. Maintain a neutral, objective tone: present geography, culture, and politics without glorification or moral judgment. Let vivid, specific facts build the narrative.
+
+  Insert image tags (`{{IMAGE: caption}}`) for scenes, people, or places that enhance understanding—captions must be concise, publication-quality figure captions (no style directives). Avoid maps, diagrams, or meta-educational scenes.
+
+  Do not include activities or questions. This book is meant to be read straight through.
+
+  **Core deep-dive topics**:
+  - Geography & environment: Congo River, tropical rainforests, savanna margins, minerals, rainfall, biodiversity.
+  - Kingdoms & politics: Kongo, Luba, Lunda, Kuba—origins, structure, trade, diplomacy, decline.
+  - Daily life & society: villages, kinship, farming, fishing, long-distance trade, music, foodways.
+  - Material culture: iron tools, weaving, sculpture, royal regalia, architecture.
+  - Beliefs & oral traditions: ancestor veneration, cosmologies, griots, folklore, initiation rites.
+
+  While covering the core checklist, **surprise us** with fascinating deep facts from diverse topics and disciplines.
+
+  **Balance your audiences**:
+  - **Young learners**: Cover all essential foundations for an elementary-level understanding.
+  - **Advanced readers**: Sneak in deep historical or anthropological tidbits, presented clearly without jargon.
+
+  **Accuracy above all**:
+  Report only what's supported by evidence. Where sources differ, note scholarly disagreements neutrally ("Some sources say X; others argue Y...").
+
+  Write each section as part of a larger, continuous narrative textbook.

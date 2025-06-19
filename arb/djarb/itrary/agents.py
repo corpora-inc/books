@@ -138,6 +138,7 @@ def get_course_outline(config: BookConfig) -> CourseOutlineResponse:
                     "You are an expert curriculum planner for the course:\n\n"
                     f"```\n{config.title}\n{config.subtitle}\n```\n\n"
                     f"The purpose of the course is: {config.purpose}\n\n"
+                    f"{f"Structure:\n{config.structure}\n\n" if config.structure else ''}"
                     "You are going to generate a complete course outline with lessons and summaries. "
                     f"You will break the course into {config.units} units. "
                     f"You will break each unit into {config.lessons_per_unit} lessons. "

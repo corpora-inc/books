@@ -53,6 +53,10 @@ Make sure the unit has a good structure. Lessons should start with `## {lesson.n
 You may use subheadings inside the lesson if the content would benefit from the structure.
 """
 
+INSTRUCTIONS = """
+
+"""
+
 
 class Command(BaseCommand):
     help = "Edit a course unit by unit"

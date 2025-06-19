@@ -18,6 +18,7 @@ class BookConfig(BaseModel):
     exercises_per_lesson: Optional[int] = 3
     isbn: Optional[str] = ""
     image_instructions: Optional[str] = None
+    structure: Optional[str] = ""
     llm_instructions: Optional[str] = None
 
 
